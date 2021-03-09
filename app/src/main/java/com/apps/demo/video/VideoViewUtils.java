@@ -9,22 +9,18 @@ import android.widget.VideoView;
 public class VideoViewUtils {
 
     // "muoi_nam.mp4" in directory "raw".
-    public static final String RAW_VIDEO_SAMPLE = "mov_bbb.mp4";
+    public static final String RAW_VIDEO_SAMPLE = "muoi_nam.mp4";
     public static final String LOCAL_VIDEO_SAMPLE ="/storage/emulated/0/DCIM/Camera/VID_20180212_195520.mp4";
     public static final String URL_VIDEO_SAMPLE  = "https://raw.githubusercontent.com/o7planning/webexamples/master/_testdatas_/mov_bbb.mp4";
-
-
     public static final String LOG_TAG= "AndroidVideoView";
 
 
     // Play a video in directory RAW.
     public static void playRawVideo(Context context, VideoView videoView, String resName)  {
         try {
-            // ID of video file.
-            int id = VideoViewUtils.getRawResIdByName( context, resName);
+            String[] separated = resName.split("\\.");
 
-            Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/" + id);
-            Log.i(LOG_TAG, "Video URI: "+ uri);
+            Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/"+separated[0]);
 
             videoView.setVideoURI(uri);
             videoView.requestFocus();
@@ -36,7 +32,6 @@ public class VideoViewUtils {
         }
     }
 
-    // @localPath = "/storage/emulated/0/DCIM/Camera/VID_20180212_195520.mp4"; (For example).
     public static void playLocalVideo(Context context, VideoView videoView, String localPath)  {
         try {
 

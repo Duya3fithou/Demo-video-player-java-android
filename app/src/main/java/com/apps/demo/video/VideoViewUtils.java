@@ -2,6 +2,7 @@ package com.apps.demo.video;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -10,7 +11,7 @@ public class VideoViewUtils {
 
     // "muoi_nam.mp4" in directory "raw".
     public static final String RAW_VIDEO_SAMPLE = "muoi_nam.mp4";
-    public static final String LOCAL_VIDEO_SAMPLE ="/storage/emulated/0/DCIM/Camera/VID_20180212_195520.mp4";
+    public static final String LOCAL_VIDEO_SAMPLE ="/storage/emulated/0/Download/sample-mp4-file.mp4";
     public static final String URL_VIDEO_SAMPLE  = "https://raw.githubusercontent.com/o7planning/webexamples/master/_testdatas_/mov_bbb.mp4";
     public static final String LOG_TAG= "AndroidVideoView";
 
@@ -21,7 +22,7 @@ public class VideoViewUtils {
             String[] separated = resName.split("\\.");
 
             Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/"+separated[0]);
-
+            Log.i(LOG_TAG, "uri uri1: "+ uri);
             videoView.setVideoURI(uri);
             videoView.requestFocus();
 
@@ -34,6 +35,10 @@ public class VideoViewUtils {
 
     public static void playLocalVideo(Context context, VideoView videoView, String localPath)  {
         try {
+            Uri uri = Uri.parse(localPath);
+            Log.i(LOG_TAG, "uri uri: "+ uri);
+            videoView.setVideoURI(uri);
+            videoView.requestFocus();
 
         } catch(Exception e) {
             Log.e(LOG_TAG, "Error Play Local Video: "+ e.getMessage());
@@ -42,8 +47,6 @@ public class VideoViewUtils {
         }
     }
 
-    // String videoURL = "https://raw.githubusercontent.com/o7planning/webexamples/master/_testdatas_/mov_bbb.mp4";
-    // String videoURL = "https://www.radiantmediaplayer.com/media/bbb-360p.mp4";
     public static void playURLVideo(Context context, VideoView videoView, String videoURL)  {
         try {
             Log.i(LOG_TAG, "Video URL: "+ videoURL);

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             this.mediaController = new MediaController(MainActivity.this);
 
             // Set the videoView that acts as the anchor for the MediaController.
-//            this.mediaController.setAnchorView(videoView);
+            this.mediaController.setAnchorView(videoView);
 
             // Set MediaController for VideoView
             this.videoView.setMediaController(mediaController);
